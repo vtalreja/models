@@ -42,8 +42,8 @@ _R_MEAN = 123.68
 _G_MEAN = 116.78
 _B_MEAN = 103.94
 
-_RESIZE_SIDE_MIN = 256
-_RESIZE_SIDE_MAX = 512
+_RESIZE_SIDE_MIN = 64
+_RESIZE_SIDE_MAX = 128
 
 
 def _crop(image, offset_height, offset_width, crop_height, crop_width):
@@ -310,16 +310,17 @@ def preprocess_for_train(image,
   Returns:
     A preprocessed image.
   """
-  resize_side = tf.random_uniform(
-      [], minval=resize_side_min, maxval=resize_side_max+1, dtype=tf.int32)
+  #resize_side = tf.random_uniform(
+  #    [], minval=resize_side_min, maxval=resize_side_max+1, dtype=tf.int32)
 
-  image = _aspect_preserving_resize(image, resize_side)
-  image = _random_crop([image], output_height, output_width)[0]
+  #image = _aspect_preserving_resize(image, resize_side)
+  #image = _random_crop([image], output_height, output_width)[0]
   image.set_shape([output_height, output_width, 3])
-  image = tf.to_float(image)
-  image = tf.image.random_flip_left_right(image)
-  return _mean_image_subtraction(image, [_R_MEAN, _G_MEAN, _B_MEAN])
 
+  image = tf.to_float(image)
+  #image = tf.image.random_flip_left_right(image)
+ # return _mean_image_subtraction(image, [_R_MEAN, _G_MEAN, _B_MEAN])
+  return image
 
 def preprocess_for_eval(image, output_height, output_width, resize_side):
   """Preprocesses the given image for evaluation.
@@ -333,12 +334,12 @@ def preprocess_for_eval(image, output_height, output_width, resize_side):
   Returns:
     A preprocessed image.
   """
-  image = _aspect_preserving_resize(image, resize_side)
-  image = _central_crop([image], output_height, output_width)[0]
+ # image = _aspect_preserving_resize(image, resize_side)
+ # image = _central_crop([image], output_height, output_width)[0]
   image.set_shape([output_height, output_width, 3])
   image = tf.to_float(image)
-  return _mean_image_subtraction(image, [_R_MEAN, _G_MEAN, _B_MEAN])
-
+  #return _mean_image_subtraction(image, [_R_MEAN, _G_MEAN, _B_MEAN])
+  return image
 
 def preprocess_image(image, output_height, output_width, is_training=False,
                      resize_side_min=_RESIZE_SIDE_MIN,

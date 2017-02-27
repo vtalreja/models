@@ -22,12 +22,18 @@ from datasets import cifar10
 from datasets import flowers
 from datasets import imagenet
 from datasets import mnist
+from datasets import casia
+from datasets import WVUMultimodal
+from datasets import casia_ndiris
 
 datasets_map = {
     'cifar10': cifar10,
     'flowers': flowers,
     'imagenet': imagenet,
     'mnist': mnist,
+    'casia': casia,
+    'WVUMultimodal': WVUMultimodal,
+    'casia_ndiris':casia_ndiris,
 }
 
 

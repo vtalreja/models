@@ -28,6 +28,10 @@ $ python download_and_convert_data.py \
 $ python download_and_convert_data.py \
     --dataset_name=flowers \
     --dataset_dir=/tmp/flowers
+
+$ python download_and_convert_data.py \
+    --dataset_name=flowers \
+    --dataset_dir=/tmp/casia
 ```
 """
 from __future__ import absolute_import
@@ -39,6 +43,9 @@ import tensorflow as tf
 from datasets import download_and_convert_cifar10
 from datasets import download_and_convert_flowers
 from datasets import download_and_convert_mnist
+from datasets import download_and_convert_casia
+from datasets import download_and_convert_WVUMultimodal
+from datasets import download_and_convert_casia_ndiris
 
 FLAGS = tf.app.flags.FLAGS
 
@@ -65,6 +72,12 @@ def main(_):
     download_and_convert_flowers.run(FLAGS.dataset_dir)
   elif FLAGS.dataset_name == 'mnist':
     download_and_convert_mnist.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'casia':
+    download_and_convert_casia.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'WVUMultimodal':
+    download_and_convert_WVUMultimodal.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'casia_ndiris':
+    download_and_convert_casia_ndiris.run(FLAGS.dataset_dir)
   else:
     raise ValueError(
         'dataset_name [%s] was not recognized.' % FLAGS.dataset_dir)

@@ -29,6 +29,7 @@ from nets import overfeat
 from nets import resnet_v1
 from nets import resnet_v2
 from nets import vgg
+from nets import vgg_val
 
 slim = tf.contrib.slim
 
@@ -36,7 +37,7 @@ networks_map = {'alexnet_v2': alexnet.alexnet_v2,
                 'cifarnet': cifarnet.cifarnet,
                 'overfeat': overfeat.overfeat,
                 'vgg_a': vgg.vgg_a,
-                'vgg_16': vgg.vgg_16,
+                'vgg_16':vgg.vgg_16,
                 'vgg_19': vgg.vgg_19,
                 'inception_v1': inception.inception_v1,
                 'inception_v2': inception.inception_v2,
@@ -97,10 +98,11 @@ def get_network_fn(name, num_classes, weight_decay=0.0, is_training=False):
   """
   if name not in networks_map:
     raise ValueError('Name of network unknown %s' % name)
-  arg_scope = arg_scopes_map[name](weight_decay=weight_decay)
+
   func = networks_map[name]
   @functools.wraps(func)
   def network_fn(images):
+    arg_scope = arg_scopes_map[name](weight_decay=weight_decay)
     with slim.arg_scope(arg_scope):
       return func(images, num_classes, is_training=is_training)
   if hasattr(func, 'default_image_size'):
