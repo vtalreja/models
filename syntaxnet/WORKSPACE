@@ -3,10 +3,9 @@ local_repository(
   path = "tensorflow",
 )
 
-load("@org_tensorflow//tensorflow:workspace.bzl", "tf_workspace")
-tf_workspace(path_prefix="", tf_repo_name="org_tensorflow")
+load('@org_tensorflow//tensorflow:workspace.bzl', 'tf_workspace')
+tf_workspace()
 
-# Test that Bazel is up-to-date.
-load("@org_tensorflow//tensorflow:workspace.bzl", "check_version")
-check_version("0.4.3")
-
+# Specify the minimum required Bazel version.
+load("@org_tensorflow//tensorflow:tensorflow.bzl", "check_version")
+check_version("0.3.0")

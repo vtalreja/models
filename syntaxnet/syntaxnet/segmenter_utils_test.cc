@@ -59,9 +59,9 @@ static Sentence GetKoSentence() {
 
 // Gets the start end bytes of the given chars in the given text.
 static void GetStartEndBytes(const string &text,
-                             const std::vector<tensorflow::StringPiece> &chars,
-                             std::vector<int> *starts,
-                             std::vector<int> *ends) {
+                             const vector<tensorflow::StringPiece> &chars,
+                             vector<int> *starts,
+                             vector<int> *ends) {
   SegmenterUtils segment_utils;
   for (const tensorflow::StringPiece &c : chars) {
     int start; int end;
@@ -75,14 +75,14 @@ static void GetStartEndBytes(const string &text,
 TEST(SegmenterUtilsTest, GetCharsTest) {
   // Create test sentence.
   const Sentence sentence = GetKoSentence();
-  std::vector<tensorflow::StringPiece> chars;
+  vector<tensorflow::StringPiece> chars;
   SegmenterUtils::GetUTF8Chars(sentence.text(), &chars);
 
   // Check the number of characters is correct.
   CHECK_EQ(chars.size(), 12);
 
-  std::vector<int> starts;
-  std::vector<int> ends;
+  vector<int> starts;
+  vector<int> ends;
   GetStartEndBytes(sentence.text(), chars, &starts, &ends);
 
   // Check start positions.
@@ -118,12 +118,12 @@ TEST(SegmenterUtilsTest, GetCharsTest) {
 TEST(SegmenterUtilsTest, SetCharsAsTokensTest) {
   // Create test sentence.
   const Sentence sentence = GetKoSentence();
-  std::vector<tensorflow::StringPiece> chars;
+  vector<tensorflow::StringPiece> chars;
   SegmenterUtils segment_utils;
   segment_utils.GetUTF8Chars(sentence.text(), &chars);
 
-  std::vector<int> starts;
-  std::vector<int> ends;
+  vector<int> starts;
+  vector<int> ends;
   GetStartEndBytes(sentence.text(), chars, &starts, &ends);
 
   // Check that the new docs word, start and end positions are properly set.

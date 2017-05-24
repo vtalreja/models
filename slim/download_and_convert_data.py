@@ -44,19 +44,31 @@ from datasets import download_and_convert_cifar10
 from datasets import download_and_convert_flowers
 from datasets import download_and_convert_mnist
 from datasets import download_and_convert_casia
-from datasets import download_and_convert_WVUMultimodal
+from datasets import download_and_convert_wvu_face_2013
+from datasets import download_and_convert_wvu_iris_2013
+from datasets import download_and_convert_wvu_face_overlap_2013
+from datasets import download_and_convert_wvu_face_overlap_2012
+from datasets import download_and_convert_wvu_iris_overlap_2013
+from datasets import download_and_convert_wvu_iris_overlap_2012
+from datasets import download_and_convert_wvu_face_overlap_frontal_2012
+from datasets import download_and_convert_wvu_joint_face_overlap_2012_no_repeat
+from datasets import download_and_convert_wvu_joint_iris_overlap_2012_no_repeat
+from datasets import download_and_convert_wvu_joint_face_overlap_2013_no_repeat
+from datasets import download_and_convert_wvu_joint_iris_overlap_2013_no_repeat
+from datasets import download_and_convert_wvu_joint_iris_and_face_overlap_2013_no_repeat
+from datasets import download_and_convert_wvu_joint_iris_and_face_overlap_2012_no_repeat
 from datasets import download_and_convert_casia_ndiris
 
 FLAGS = tf.app.flags.FLAGS
 
 tf.app.flags.DEFINE_string(
     'dataset_name',
-    None,
+    "wvu_iris_overlap_2012",
     'The name of the dataset to convert, one of "cifar10", "flowers", "mnist".')
 
 tf.app.flags.DEFINE_string(
     'dataset_dir',
-    None,
+    '/media/veerut/full/TensorFlow/Iris',
     'The directory where the output TFRecords and temporary files are saved.')
 
 
@@ -65,7 +77,6 @@ def main(_):
     raise ValueError('You must supply the dataset name with --dataset_name')
   if not FLAGS.dataset_dir:
     raise ValueError('You must supply the dataset directory with --dataset_dir')
-
   if FLAGS.dataset_name == 'cifar10':
     download_and_convert_cifar10.run(FLAGS.dataset_dir)
   elif FLAGS.dataset_name == 'flowers':
@@ -74,8 +85,32 @@ def main(_):
     download_and_convert_mnist.run(FLAGS.dataset_dir)
   elif FLAGS.dataset_name == 'casia':
     download_and_convert_casia.run(FLAGS.dataset_dir)
-  elif FLAGS.dataset_name == 'WVUMultimodal':
-    download_and_convert_WVUMultimodal.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_face_2013':
+      download_and_convert_wvu_face_2013.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_face_overlap_2013':
+      download_and_convert_wvu_face_overlap_2013.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_face_overlap_2012':
+      download_and_convert_wvu_face_overlap_2012.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_face_overlap_frontal_2012':
+      download_and_convert_wvu_face_overlap_frontal_2012.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_joint_face_overlap_2012_no_repeat':
+	  download_and_convert_wvu_joint_face_overlap_2012_no_repeat.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_joint_iris_overlap_2012_no_repeat':
+      download_and_convert_wvu_joint_iris_overlap_2012_no_repeat.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_joint_face_overlap_2013_no_repeat':
+      download_and_convert_wvu_joint_face_overlap_2013_no_repeat.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_joint_iris_overlap_2013_no_repeat':
+      download_and_convert_wvu_joint_iris_overlap_2013_no_repeat.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_joint_iris_and_face_overlap_2013_no_repeat':
+      download_and_convert_wvu_joint_iris_and_face_overlap_2013_no_repeat.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_joint_iris_and_face_overlap_2012_no_repeat':
+      download_and_convert_wvu_joint_iris_and_face_overlap_2012_no_repeat.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_iris_2013':
+      download_and_convert_wvu_iris_2013.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_iris_overlap_2013':
+      download_and_convert_wvu_iris_overlap_2013.run(FLAGS.dataset_dir)
+  elif FLAGS.dataset_name == 'wvu_iris_overlap_2012':
+      download_and_convert_wvu_iris_overlap_2012.run(FLAGS.dataset_dir)
   elif FLAGS.dataset_name == 'casia_ndiris':
     download_and_convert_casia_ndiris.run(FLAGS.dataset_dir)
   else:

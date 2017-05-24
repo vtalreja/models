@@ -128,10 +128,10 @@ class TaggerTransitionState : public ParserTransitionState {
 
  private:
   // Currently assigned POS tags for each token in this sentence.
-  std::vector<int> tag_;
+  vector<int> tag_;
 
   // Gold POS tags from the input document.
-  std::vector<int> gold_tag_;
+  vector<int> gold_tag_;
 
   // Tag map used for conversions between integer and string representations
   // part of speech tags. Not owned.

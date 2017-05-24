@@ -25,7 +25,7 @@ class AdditiveGaussianNoiseAutoencoder(object):
         self.cost = 0.5 * tf.reduce_sum(tf.pow(tf.sub(self.reconstruction, self.x), 2.0))
         self.optimizer = optimizer.minimize(self.cost)
 
-        init = tf.global_variables_initializer()
+        init = tf.initialize_all_variables()
         self.sess = tf.Session()
         self.sess.run(init)
 
@@ -92,7 +92,7 @@ class MaskingNoiseAutoencoder(object):
         self.cost = 0.5 * tf.reduce_sum(tf.pow(tf.sub(self.reconstruction, self.x), 2.0))
         self.optimizer = optimizer.minimize(self.cost)
 
-        init = tf.global_variables_initializer()
+        init = tf.initialize_all_variables()
         self.sess = tf.Session()
         self.sess.run(init)
 

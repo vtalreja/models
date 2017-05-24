@@ -25,6 +25,7 @@ from preprocessing import cifarnet_preprocessing
 from preprocessing import inception_preprocessing
 from preprocessing import lenet_preprocessing
 from preprocessing import vgg_preprocessing
+from preprocessing import vgg_preprocessing_iris
 
 slim = tf.contrib.slim
 
@@ -60,7 +61,14 @@ def get_preprocessing(name, is_training=False):
       'vgg': vgg_preprocessing,
       'vgg_a': vgg_preprocessing,
       'vgg_16': vgg_preprocessing,
+      'vgg_16_face': vgg_preprocessing,
+      'vgg_16_iris': vgg_preprocessing_iris,
       'vgg_19': vgg_preprocessing,
+      'vgg_19_face_bilinear': vgg_preprocessing,
+	  'vgg_19_face_gap': vgg_preprocessing,
+      'vgg_19_iris_gap': vgg_preprocessing_iris,
+      'vgg_19_iris_bilinear': vgg_preprocessing_iris,
+
   }
 
   if name not in preprocessing_fn_map:

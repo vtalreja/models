@@ -30,7 +30,7 @@ class VariationalAutoencoder(object):
         self.cost = tf.reduce_mean(reconstr_loss + latent_loss)
         self.optimizer = optimizer.minimize(self.cost)
 
-        init = tf.global_variables_initializer()
+        init = tf.initialize_all_variables()
         self.sess = tf.Session()
         self.sess.run(init)
 

@@ -18,6 +18,7 @@
 
 import tensorflow as tf
 
+
 def build_input(dataset, data_path, batch_size, mode):
   """Build CIFAR image and labels.
 
@@ -83,7 +84,7 @@ def build_input(dataset, data_path, batch_size, mode):
   else:
     image = tf.image.resize_image_with_crop_or_pad(
         image, image_size, image_size)
-    image = tf.image.per_image_standardization(image)
+    image = tf.image.per_image_whitening(image)
 
     example_queue = tf.FIFOQueue(
         3 * batch_size,
@@ -100,7 +101,7 @@ def build_input(dataset, data_path, batch_size, mode):
   labels = tf.reshape(labels, [batch_size, 1])
   indices = tf.reshape(tf.range(0, batch_size, 1), [batch_size, 1])
   labels = tf.sparse_to_dense(
-      tf.concat(values=[indices, labels], axis=1),
+      tf.concat(1, [indices, labels]),
       [batch_size, num_classes], 1.0, 0.0)
 
   assert len(images.get_shape()) == 4
@@ -111,5 +112,5 @@ def build_input(dataset, data_path, batch_size, mode):
   assert labels.get_shape()[1] == num_classes
 
   # Display the training images in the visualizer.
-  tf.summary.image('images', images)
+  tf.image_summary('images', images)
   return images, labels

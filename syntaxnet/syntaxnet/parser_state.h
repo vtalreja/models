@@ -210,14 +210,14 @@ class ParserState {
   int next_;
 
   // Parse stack of partially processed tokens.
-  std::vector<int> stack_;
+  vector<int> stack_;
 
   // List of head positions for the (partial) dependency tree.
-  std::vector<int> head_;
+  vector<int> head_;
 
   // List of dependency relation labels describing the (partial) dependency
   // tree.
-  std::vector<int> label_;
+  vector<int> label_;
 
   // Score of the parser state.
   double score_ = 0.0;

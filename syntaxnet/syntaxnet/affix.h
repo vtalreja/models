@@ -146,10 +146,10 @@ class AffixTable {
   int max_length_;
 
   // Index from affix ids to affix items.
-  std::vector<Affix *> affixes_;
+  vector<Affix *> affixes_;
 
   // Buckets for word-to-affix hash map.
-  std::vector<Affix *> buckets_;
+  vector<Affix *> buckets_;
 
   TF_DISALLOW_COPY_AND_ASSIGN(AffixTable);
 };

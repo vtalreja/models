@@ -50,13 +50,13 @@ void GenericFeatureExtractor::InitializeFeatureTypes() {
     }
   }
 
-  std::vector<string> types_names;
+  vector<string> types_names;
   GetFeatureTypeNames(&types_names);
   CHECK_EQ(feature_types_.size(), types_names.size());
 }
 
 void GenericFeatureExtractor::GetFeatureTypeNames(
-    std::vector<string> *type_names) const {
+    vector<string> *type_names) const {
   for (size_t i = 0; i < feature_types_.size(); ++i) {
     FeatureType *ft = feature_types_[i];
     type_names->push_back(ft->name());
@@ -102,7 +102,7 @@ int GenericFeatureFunction::GetIntParameter(const string &name,
 }
 
 void GenericFeatureFunction::GetFeatureTypes(
-    std::vector<FeatureType *> *types) const {
+    vector<FeatureType *> *types) const {
   if (feature_type_ != nullptr) types->push_back(feature_type_);
 }
 
@@ -111,7 +111,7 @@ FeatureType *GenericFeatureFunction::GetFeatureType() const {
   if (feature_type_ != nullptr) return feature_type_;
 
   // Get feature types for function.
-  std::vector<FeatureType *> types;
+  vector<FeatureType *> types;
   GetFeatureTypes(&types);
 
   // If there is exactly one feature type return this, else return null.

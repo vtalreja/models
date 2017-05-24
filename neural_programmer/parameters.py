@@ -72,7 +72,7 @@ class Parameters:
         self.RandomUniformInit([1, embedding_dims]))
     params["break_conditional"] = tf.Variable(
         self.RandomUniformInit([2 * embedding_dims, embedding_dims]))
-    init = tf.global_variables_initializer()
+    init = tf.initialize_all_variables()
     return params, global_step, init
 
   def RandomUniformInit(self, shape):

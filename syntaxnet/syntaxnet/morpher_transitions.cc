@@ -132,10 +132,10 @@ class MorphologyTransitionState : public ParserTransitionState {
 
  private:
   // Currently assigned morphological analysis for each token in this sentence.
-  std::vector<int> tag_;
+  vector<int> tag_;
 
   // Gold morphological analysis from the input document.
-  std::vector<int> gold_tag_;
+  vector<int> gold_tag_;
 
   // Tag map used for conversions between integer and string representations
   // part of speech tags. Not owned.

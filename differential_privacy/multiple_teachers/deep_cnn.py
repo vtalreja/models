@@ -341,7 +341,7 @@ def loss_fun(logits, labels):
   # Calculate the cross entropy between labels and predictions
   labels = tf.cast(labels, tf.int64)
   cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
-      logits=logits, labels=labels, name='cross_entropy_per_example')
+      logits, labels, name='cross_entropy_per_example')
 
   # Calculate the average cross entropy loss across the batch.
   cross_entropy_mean = tf.reduce_mean(cross_entropy, name='cross_entropy')
@@ -490,7 +490,7 @@ def train(images, labels, ckpt_path, dropout=False):
     print("Graph constructed and saver created")
 
     # Build an initialization operation to run below.
-    init = tf.global_variables_initializer()
+    init = tf.initialize_all_variables()
 
     # Create and init sessions
     sess = tf.Session(config=tf.ConfigProto(log_device_placement=FLAGS.log_device_placement)) #NOLINT(long-line)

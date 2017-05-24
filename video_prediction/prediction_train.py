@@ -207,7 +207,7 @@ def main(unused_argv):
     saver.restore(sess, FLAGS.pretrained_model)
 
   tf.train.start_queue_runners(sess)
-  sess.run(tf.global_variables_initializer())
+  sess.run(tf.initialize_all_variables())
 
   tf.logging.info('iteration number, cost')
 

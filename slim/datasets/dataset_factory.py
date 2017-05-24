@@ -23,7 +23,19 @@ from datasets import flowers
 from datasets import imagenet
 from datasets import mnist
 from datasets import casia
-from datasets import WVUMultimodal
+from datasets import wvu_face_2013
+from datasets import wvu_iris_2013
+from datasets import wvu_face_overlap_2013
+from datasets import wvu_face_overlap_2012
+from datasets import wvu_iris_overlap_2013
+from datasets import wvu_iris_overlap_2012
+from datasets import wvu_face_overlap_frontal_2012
+from datasets import wvu_joint_face_overlap_2012_no_repeat
+from datasets import wvu_joint_iris_overlap_2012_no_repeat
+from datasets import wvu_joint_face_overlap_2013_no_repeat
+from datasets import wvu_joint_iris_overlap_2013_no_repeat
+from datasets import wvu_joint_iris_and_face_overlap_2013_no_repeat
+from datasets import wvu_joint_iris_and_face_overlap_2012_no_repeat
 from datasets import casia_ndiris
 
 datasets_map = {
@@ -32,7 +44,19 @@ datasets_map = {
     'imagenet': imagenet,
     'mnist': mnist,
     'casia': casia,
-    'WVUMultimodal': WVUMultimodal,
+    'wvu_face_2013':wvu_face_2013,
+    'wvu_face_overlap_2013':wvu_face_overlap_2013,
+    'wvu_face_overlap_2012':wvu_face_overlap_2012,
+    'wvu_face_overlap_frontal_2012':wvu_face_overlap_frontal_2012,
+    'wvu_joint_face_overlap_2012_no_repeat':wvu_joint_face_overlap_2012_no_repeat,
+    'wvu_joint_iris_overlap_2012_no_repeat': wvu_joint_iris_overlap_2012_no_repeat,
+    'wvu_joint_face_overlap_2013_no_repeat': wvu_joint_face_overlap_2013_no_repeat,
+    'wvu_joint_iris_overlap_2013_no_repeat': wvu_joint_iris_overlap_2013_no_repeat,
+    'wvu_joint_iris_and_face_overlap_2013_no_repeat': wvu_joint_iris_and_face_overlap_2013_no_repeat,
+	'wvu_joint_iris_and_face_overlap_2012_no_repeat': wvu_joint_iris_and_face_overlap_2012_no_repeat,
+	'wvu_iris_2013':wvu_iris_2013,
+    'wvu_iris_overlap_2013': wvu_iris_overlap_2013,
+    'wvu_iris_overlap_2012': wvu_iris_overlap_2012,
     'casia_ndiris':casia_ndiris,
 }
 

@@ -24,12 +24,11 @@ limitations under the License.
 namespace syntaxnet {
 
 // Registry for the parser feature functions.
-REGISTER_SYNTAXNET_CLASS_REGISTRY("parser feature function",
-                                  ParserFeatureFunction);
+REGISTER_CLASS_REGISTRY("parser feature function", ParserFeatureFunction);
 
 // Registry for the parser state + token index feature functions.
-REGISTER_SYNTAXNET_CLASS_REGISTRY("parser+index feature function",
-                                  ParserIndexFeatureFunction);
+REGISTER_CLASS_REGISTRY("parser+index feature function",
+                        ParserIndexFeatureFunction);
 
 RootFeatureType::RootFeatureType(const string &name,
                                  const FeatureType &wrapped_type,
@@ -228,30 +227,5 @@ class ParserTokenFeatureFunction : public NestedFeatureFunction<
 
 REGISTER_PARSER_IDX_FEATURE_FUNCTION("token",
                                      ParserTokenFeatureFunction);
-
-// Parser feature that always fetches the focus (position) of the token.
-class FocusFeatureFunction : public ParserIndexFeatureFunction {
- public:
-  // Initializes the feature function.
-  void Init(TaskContext *context) override {
-    // Note: this feature can return up to N values, where N is the length of
-    // the input sentence. Here, we give the arbitrary number 100 since it
-    // is not used.
-    set_feature_type(new NumericFeatureType(name(), 100));
-  }
-
-  void Evaluate(const WorkspaceSet &workspaces, const ParserState &object,
-                int focus, FeatureVector *result) const override {
-    FeatureValue value = focus;
-    result->add(feature_type(), value);
-  }
-
-  FeatureValue Compute(const WorkspaceSet &workspaces, const ParserState &state,
-                       int focus, const FeatureVector *result) const override {
-    return focus;
-  }
-};
-
-REGISTER_PARSER_IDX_FEATURE_FUNCTION("focus", FocusFeatureFunction);
 
 }  // namespace syntaxnet
